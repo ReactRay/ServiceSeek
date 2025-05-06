@@ -1,0 +1,21 @@
+@use './globals' as *;
+
+.main-container {
+  height: 93dvh;
+}
+
+.layout-container {
+  height: 100%;
+  display: flex;
+
+  .layout-item {
+    flex: 1;
+    border: 3px solid blue;
+  }
+}
+
+@media (max-width: 764px) {
+  .layout-container {
+    flex-direction: column;
+  }
+}

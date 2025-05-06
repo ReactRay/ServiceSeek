@@ -1,0 +1,61 @@
+@use './globals' as *;
+@use './nav';
+@use './layout';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  height: 100dvh;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw + 1rem, 4rem); /* 40px – 64px */
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw + 0.5rem, 3rem); /* 32px – 48px */
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw + 0.5rem, 2.25rem); /* 24px – 36px */
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2vw + 0.5rem, 1.75rem); /* 20px – 28px */
+}
+
+a {
+  all: unset; // removes all styles
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+textarea,
+select,
+button {
+  all: unset;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical; // optional: allow resizing only vertically
+}
+
+.btn {
+}

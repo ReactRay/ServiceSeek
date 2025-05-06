@@ -1,0 +1,23 @@
+@use './globals' as *;
+
+nav {
+  background-color: $color-primary;
+
+  ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    padding-block: 1rem;
+
+    li {
+      color: $color-white;
+      transition: all 0.4s;
+
+      &:hover {
+        color: $color-text;
+      }
+    }
+  }
+}
