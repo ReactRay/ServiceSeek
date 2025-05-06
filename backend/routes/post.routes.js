@@ -23,4 +23,29 @@ router.get('/all', async (req, res) => {
   res.status(200).json(posts)
 })
 
+router.delete('/:id', async (req, res) => {
+  const postId = req.params.id
+
+  await Post.deleteOne({ _id: postId })
+
+  res.status(200).json('deleted')
+})
+
+router.put('/:id', async (req, res) => {
+  const postId = req.params.id
+  const { title, body } = req.body
+
+  console.log(title, body, postId, 'please work')
+
+  const newPost = await Post.findByIdAndUpdate(
+    postId,
+    { title, body },
+    {
+      new: true,
+    }
+  )
+
+  res.status(200).json(newPost)
+})
+
 export default router

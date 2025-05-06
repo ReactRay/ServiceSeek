@@ -16,7 +16,7 @@ export function About() {
         })
     }
 
-    console.log(selectedPost, 'yo')
+    console.log(posts, 'yo')
 
     return <div className="post-page">
         {selectedPost && <EditModal post={selectedPost} setPost={setSelectedPost} />}

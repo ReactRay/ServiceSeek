@@ -6,6 +6,7 @@ export type actualPost = post & {
     _id: string,
 }
 
+const URL = 'http://localhost:3000'
 
 type store = {
     posts: actualPost[],
@@ -18,20 +19,24 @@ type store = {
 export const usePostStore = create<store>((set, get) => ({
     posts: [],
     addPost: async (data) => {
-        const post: actualPost = await axios.post('http://localhost:3000/posts/add', data)
-        set((state) => ({ posts: [post, ...state.posts] }))
+        const post = await axios.post(URL + '/posts/add', data)
+        set((state) => ({ posts: [post.data, ...state.posts] }))
     },
 
-    deletePost: (id) => {
+    deletePost: async (id) => {
+        console.log(id)
+        await axios.delete(URL + '/posts/' + id)
         set((state) => ({ posts: state.posts.filter((item) => item._id !== id) }))
     }
     ,
-    updatePost: (id, prop) => {
-        set((state) => ({ posts: state.posts.map((item) => item._id === id ? prop : item) }))
+    updatePost: async (id, prop) => {
+        console.log(prop)
+        const updatedPost = await axios.put(URL + '/posts/' + id, prop)
+        set((state) => ({ posts: state.posts.map((item) => item._id === id ? updatedPost.data : item) }))
 
     },
     getPosts: async () => {
-        const allPosts = await axios.get('http://localhost:3000/posts/all')
+        const allPosts = await axios.get(URL + '/posts/all')
 
         set((state) => ({ posts: allPosts.data }))
     }
