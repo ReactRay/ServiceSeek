@@ -26,10 +26,18 @@ export function About() {
             {posts.map((post, index) => {
                 return (
                     <li className="post-card" key={index} >
-                        <h4 onClick={() => handleSelect(post)}>{post.title}</h4>
-                        <p>{post.body}</p>
-                        <button className="delete" onClick={() => deletePost(post._id)}>x</button>
+                        <div className="first-half">
+                            <h4 onClick={() => handleSelect(post)}>{post.title}</h4>
+                            <p>{post.body}</p>
 
+                            <input type="text" placeholder="add a comment" />
+                            <button>submit comment</button>
+                        </div>
+                        <div className="comment-display">
+
+                        </div>
+
+                        <button className="delete" onClick={() => deletePost(post._id)}>x</button>
                     </li>
                 )
             })}

@@ -21,7 +21,7 @@ export function Layout() {
         <div className="layout-item">
             <LandingPage />
         </div>
-        <div className="layout-item">
+        <div className="layout-item big">
             <Outlet />
         </div>
 
