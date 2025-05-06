@@ -1,5 +1,7 @@
 
 
 export function About() {
-    return <div>About</div>;
+    return <div>
+        <h2>About us!</h2>
+    </div>;
 }

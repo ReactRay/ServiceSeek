@@ -1,0 +1,23 @@
+@use './globals' as *;
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    text-align: center;
+  }
+  .form-group {
+    display: flex;
+    padding-block: 1rem;
+    width: 100%;
+    gap: 1rem;
+    input {
+      width: 100%;
+      border-bottom: 1px solid $color-grey;
+      padding-block: 0.5rem;
+      text-align: center;
+    }
+  }
+}
