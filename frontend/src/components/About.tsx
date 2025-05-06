@@ -5,7 +5,7 @@ import { EditModal } from "./EditModal";
 export function About() {
     const [comment, setComment] = useState('')
     const [selectedPost, setSelectedPost] = useState<actualPost | null>(null)
-    const { posts, deletePost, updatePost } = usePostStore()
+    const { posts, deletePost, updatePost, addComment } = usePostStore()
 
     function handleSelect(post: actualPost) {
         setSelectedPost(() => {
@@ -16,9 +16,11 @@ export function About() {
         })
     }
 
-    function handleAddComment(postId: string): void {
+    async function handleAddComment(postId: string): void {
 
+        await addComment(postId, comment)
 
+        setComment('')
     }
 
 
@@ -36,10 +38,16 @@ export function About() {
                             <p>{post.body}</p>
 
                             <input type="text" placeholder="add a comment" value={comment} onChange={(e) => { setComment(e.target.value) }} />
-                            <button>submit comment</button>
+                            <button onClick={() => handleAddComment(post._id)}>submit comment</button>
                         </div>
                         <div className="comment-display">
-
+                            {post.comments.map((comment, index) => {
+                                return (
+                                    <div key={comment._id} className="comment">
+                                        {comment.content}
+                                    </div>
+                                )
+                            })}
                         </div>
 
                         <button className="delete" onClick={() => deletePost(post._id)}>x</button>

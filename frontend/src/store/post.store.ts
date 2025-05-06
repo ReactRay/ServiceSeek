@@ -4,6 +4,13 @@ import axios from 'axios'
 
 export type actualPost = post & {
     _id: string,
+    comments: comment[],
+}
+
+type comment = {
+    _id: string,
+    content: string,
+    post: string,
 }
 
 const URL = 'http://localhost:3000'
@@ -41,8 +48,18 @@ export const usePostStore = create<store>((set, get) => ({
 
         set((state) => ({ posts: allPosts.data }))
     },
-    addComment: async (id, value) => {
+    addComment: async (postId, content) => {
+        const res = await axios.post(`${URL}/comments/${postId}`, { comment: content })
+        const newComment: comment = res.data
 
+        const posts = [...get().posts]
+
+        const index = posts.findIndex((p) => p._id === postId)
+        if (index === -1) return // post not found
+
+        posts[index].comments.push(newComment)
+
+        set({ posts })
     }
 
 }))
