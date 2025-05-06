@@ -30,7 +30,7 @@ export function EditModal({ post, setPost }: editModal) {
     }
 
 
-    return <div>
+    return <div className="edit-modal" >
 
         <form onSubmit={handleSubmit}>
 
