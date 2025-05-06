@@ -1,0 +1,40 @@
+@use './globals' as *;
+
+.post-page {
+  ul {
+    list-style: none;
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      gap: 1.2rem;
+      padding: 1rem 1rem;
+      position: relative;
+      border-radius: 0.4rem;
+      border: 1px solid #333;
+      box-shadow: 0 0.1rem 0.9rem rgba(#9f9b9b, 0.5);
+
+      h4 {
+        font-size: 0.9rem;
+      }
+      p {
+        overflow-y: auto;
+        height: 3rem;
+      }
+      button {
+        color: coral;
+        font-weight: 400;
+        font-size: 2rem;
+        position: absolute;
+        right: 5px;
+        top: 0;
+      }
+    }
+  }
+}
