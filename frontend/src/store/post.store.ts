@@ -14,6 +14,7 @@ type store = {
     deletePost: (id: string) => void
     updatePost: (id: string, newPost: actualPost) => void
     getPosts: () => void
+    addComment: (id: string, value: string) => void
 }
 
 export const usePostStore = create<store>((set, get) => ({
@@ -39,6 +40,9 @@ export const usePostStore = create<store>((set, get) => ({
         const allPosts = await axios.get(URL + '/posts/all')
 
         set((state) => ({ posts: allPosts.data }))
+    },
+    addComment: async (id, value) => {
+
     }
 
 }))

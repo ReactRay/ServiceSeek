@@ -3,7 +3,7 @@ import { actualPost, usePostStore } from "../store/post.store";
 import { EditModal } from "./EditModal";
 
 export function About() {
-
+    const [comment, setComment] = useState('')
     const [selectedPost, setSelectedPost] = useState<actualPost | null>(null)
     const { posts, deletePost, updatePost } = usePostStore()
 
@@ -16,7 +16,12 @@ export function About() {
         })
     }
 
-    console.log(posts, 'yo')
+    function handleAddComment(postId: string): void {
+
+
+    }
+
+
 
     return <div className="post-page">
         {selectedPost && <EditModal post={selectedPost} setPost={setSelectedPost} />}
@@ -30,7 +35,7 @@ export function About() {
                             <h4 onClick={() => handleSelect(post)}>{post.title}</h4>
                             <p>{post.body}</p>
 
-                            <input type="text" placeholder="add a comment" />
+                            <input type="text" placeholder="add a comment" value={comment} onChange={(e) => { setComment(e.target.value) }} />
                             <button>submit comment</button>
                         </div>
                         <div className="comment-display">
