@@ -1,18 +1,34 @@
-import { usePostStore } from "../store/post.store";
+import { useState } from "react";
+import { actualPost, usePostStore } from "../store/post.store";
+import { EditModal } from "./EditModal";
 
 export function About() {
 
-    const { posts, deletePost } = usePostStore()
+    const [selectedPost, setSelectedPost] = useState<actualPost | null>(null)
+    const { posts, deletePost, updatePost } = usePostStore()
+
+    function handleSelect(post: actualPost) {
+        setSelectedPost(() => {
+            if (selectedPost) {
+                return null
+            }
+            return post
+        })
+    }
+
+    console.log(selectedPost, 'yo')
 
     return <div className="post-page">
         <h2>all posts are here !</h2>
         <ul>
             {posts.map((post, index) => {
                 return (
-                    <li className="post-card" key={index}>
-                        <h4>{post.title}</h4>
+                    <li className="post-card" key={index} >
+                        <h4 onClick={() => handleSelect(post)}>{post.title}</h4>
                         <p>{post.body}</p>
-                        <button onClick={() => deletePost(post._id)}>x</button>
+                        <button className="delete" onClick={() => deletePost(post._id)}>x</button>
+                        {selectedPost && <EditModal post={post} setPost={setSelectedPost} />}
+
                     </li>
                 )
             })}
